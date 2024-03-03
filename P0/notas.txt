@@ -1,0 +1,2 @@
+docker >
+c++ -c -std=c++17 -Wall -Wextra -pedantic fecha.cpp
