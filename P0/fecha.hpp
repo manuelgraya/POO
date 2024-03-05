@@ -1,8 +1,8 @@
-#ifndef FECHA_HPP
-#define FECHA_HPP
+#ifndef FECHA_HPP_
+#define FECHA_HPP_
 
 #include <iostream>
-#include <stdlib.h>
+
 
 using namespace std;    
 

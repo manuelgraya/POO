@@ -1,4 +1,5 @@
 #include "fecha.hpp"
+#include <iostream>
 
 Fecha::Fecha(int d, int m, int a) : dia_{d}, mes_{m}, anio_{a} { // constructor de la clase Fecha con 3 parametros de entrada
     if (a < AnnoMinimo || a > AnnoMaximo) {// si el año es menor a 1902 o mayor a 2037
