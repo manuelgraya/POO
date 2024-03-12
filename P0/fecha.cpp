@@ -135,3 +135,36 @@ Fecha Fecha::operator --(int){
 }
 
 /*------------------------------------------------------OPERADORES LOGICOS------------------------------------------------------------*/
+
+
+bool Fecha::operator ==(const Fecha& f) const {
+    return dia_ == f.dia_ && mes_ == f.mes_ && anio_ == f.anio_;
+}
+
+bool Fecha::operator !=(const Fecha& f) const {
+    return !(*this == f); //a != b => !(a == b)
+}
+
+bool Fecha::operator <(const Fecha& f)const{
+    if (anio_ > f.anio_){ // si el año es mayor
+        return false;       // retorna false
+    }else if(anio_ == f.anio_ && mes_ > f.mes_){// si el año es igual y el mes es mayor
+        return false;           // retorna false    
+    }else if(anio_ == f.anio_ && mes_ == f.mes_ && dia_ > f.dia_){// si el año y el mes son iguales y el día es mayor
+        return false;           // retorna false
+    }else {
+        return true;            // retorna true
+    }
+}
+
+bool Fecha::operator >(const Fecha& fecha2)const{
+    return fecha2 < *this; // a > b => b < a
+}
+
+bool Fecha::operator <=(const Fecha& f)const{
+    return !(f<*this); //a <= b => !(b < a)
+}
+
+bool Fecha::operator >=(const Fecha& f)const{
+    return !(*this<b);//a >= b => !(a < b)
+}
