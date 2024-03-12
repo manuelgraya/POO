@@ -83,6 +83,8 @@ Fecha::Fecha(const char* s){ // constructor de la clase Fecha con un parametro d
 
 }
 
+/*------------------------------------------------------OPERADORES------------------------------------------------------------------------*/
+
 Fecha& Fecha::operator +=(int n){
     tiempo_descompuesto->tm_mday += n; // suma n días al día actual del tiempo descompuesto 
     std::mktime(tiempo_descompuesto); // convierte el tiempo descompuesto a tiempo calendario 
@@ -131,3 +133,5 @@ Fecha Fecha::operator --(int){
     *this -= 1; // llama al operador -= con el valor de 1
     return f; // retorna el objeto f 
 }
+
+/*------------------------------------------------------OPERADORES LOGICOS------------------------------------------------------------*/
