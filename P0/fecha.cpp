@@ -15,22 +15,9 @@ Fecha::Fecha(int d, int m, int a):dia_(d),mes_(m),anno_(a) { //lista de iniciali
     }
 
 }
-bool valida(int d, int m, int a){
-    if (d < 1 || d > 31) {
-        throw std::out_of_range("Error: Dia no valido");
-    }
-    if (m < 1 || m > 12) {
-        throw std::out_of_range("Error: Mes no valido");
-    }
-    if (a < 0) {
-        throw std::out_of_range("Error: Año no valido");
-    }
-    if (d > dias_mes(m, a)) {
-        throw std::out_of_range("Error: Dia no valido para el mes y año");
-    }
 
-    return true;
-
+bool es_bisiesto(int a){
+    return (a % 4 == 0 && a % 100 != 0) || (a % 400 == 0);
 }
 
 int dias_mes(int m, int a){
@@ -54,22 +41,41 @@ int dias_mes(int m, int a){
     return dias;
 }
 
-bool es_bisiesto(int a){
-    return (a % 4 == 0 && a % 100 != 0) || (a % 400 == 0);
+bool valida(int d, int m, int a){
+    if (d < 1 || d > 31) {
+        throw std::out_of_range("Error: Dia no valido");
+    }
+    if (m < 1 || m > 12) {
+        throw std::out_of_range("Error: Mes no valido");
+    }
+    if (a < 0) {
+        throw std::out_of_range("Error: Año no valido");
+    }
+    if (d > dias_mes(m, a)) {
+        throw std::out_of_range("Error: Dia no valido para el mes y año");
+    }
+
+    return true;
+
 }
 
 int main() {
     Fecha f1;           // Fecha del sistema
-    Fecha f2(15);       // Día 15, mes y año del sistema
-    Fecha f3(15, 7);    // 15 de julio, año del sistema
-    Fecha f4(15, 7, 1990); // 15 de julio de 1990
-    Fecha f5(29, 2, 2025); // 15 de julio de 1990
-    Fecha f6(55, 7, 1990); // 15 de julio de 1990
-
     std::cout << "Fecha 1: " << f1.dia() << "/" << f1.mes() << "/" << f1.anno() << "\n";
+
+    Fecha f2(15);       // Día 15, mes y año del sistema
     std::cout << "Fecha 2: " << f2.dia() << "/" << f2.mes() << "/" << f2.anno() << "\n";
+
+    Fecha f3(15, 7);    // 15 de julio, año del sistema
     std::cout << "Fecha 3: " << f3.dia() << "/" << f3.mes() << "/" << f3.anno() << "\n";
+
+    Fecha f4(15, 7, 1990); // 15 de julio de 1990
     std::cout << "Fecha 4: " << f4.dia() << "/" << f4.mes() << "/" << f4.anno() << "\n";
+
+    Fecha f5(29, 2, 2025); // Fecha errónea, bisiesto equivoco
+    
+    Fecha f6(55, 7, 1990); // Fecha errónea,
+
     std::cin.get();
 
     return 0;
