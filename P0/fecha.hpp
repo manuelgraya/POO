@@ -12,6 +12,9 @@ class Fecha {
         int dia_;
         int mes_;
         int anno_;
+        bool valida(int d, int m, int a);
+        int dias_mes(int m, int a);
+        bool es_bisiesto(int a);
     public:
     //constructores
     explicit Fecha (int dia = 0, int mes = 0, int anno = 0); //constructor con tres parametros, no permite conversion implicita Fecha f= 5; (Fecha (5,0,0))
