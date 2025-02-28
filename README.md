@@ -1,4 +1,4 @@
-#Programación orientada a objetos
+# Programación orientada a objetos
 
 ## P0 Sesión 1
 
