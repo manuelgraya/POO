@@ -1,9 +1,26 @@
 {
+    "version": "2.0.0",
     "tasks": [
+        {
+            "label": "Compilar fecha.cpp",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Compilación de archivo activo usando g++"
+        },
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe compilar archivo activo",
-            "command": "C:\\MinGW\\bin\\g++.exe",
+            "command": "C:/msys64/mingw64/bin/g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
@@ -12,7 +29,7 @@
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "C:/msys64/mingw64/bin"
             },
             "problemMatcher": [
                 "$gcc"
@@ -23,6 +40,5 @@
             },
             "detail": "Tarea generada por el depurador."
         }
-    ],
-    "version": "2.0.0"
+    ]
 }
