@@ -21,7 +21,7 @@ Fecha::Fecha(int d, int m, int a):dia_(d),mes_(m),anno_(a) { //lista de iniciali
 Fecha::Fecha(const char* cadena){
     int d,m,a;
     sscanf(cadena,"%d/%d/%d", &d, &m, &a);
-    valida(d,m,a);
+    valida(d, m, a);
     dia_ = d;
     mes_ = m;
     anno_ = a;
@@ -60,14 +60,14 @@ int dias_mes(int m, int a){
 }
 
 bool valida(int d, int m, int a){
-    if (d < 0 || d > dias_mes(m, a)) {
-        throw std::out_of_range("Error: Dia no valido");
-    }
     if (m < 0 || m > 12) {
-        throw std::out_of_range("Error: Mes no valido");
+        throw Fecha::Invalida("Mes no válido");
+    }
+    if (d < 0 || d > dias_mes(m, a)) {
+        throw Fecha::Invalida("Día no válido");
     }
     if (a!=0 && (a < Fecha::AnnoMinimo || a > Fecha::AnnoMaximo)) {
-        throw std::out_of_range("Error: Año no valido");
+        throw Fecha::Invalida("Año no válido");
     }
     
 
@@ -75,5 +75,17 @@ bool valida(int d, int m, int a){
 
 }
 
-
-
+Fecha& Fecha::operator+=(int n){
+    std::time_t tiempo_calendario = std::time(nullptr); //time_t es un tipo de dato que representa el tiempo en segundos desde el 1 de enero de 1970
+    std::tm* tiempo_descompuesto = std::localtime(&tiempo_calendario); //tm apunta a una estructura que contiene la fecha y hora actual
+    tiempo_descompuesto->tm_mday = dia_;
+    tiempo_descompuesto->tm_mon = mes_ - 1;
+    tiempo_descompuesto->tm_year = anno_ - 1900;
+    tiempo_descompuesto->tm_mday += n;
+    std::mktime(tiempo_descompuesto);
+    dia_ = tiempo_descompuesto->tm_mday;
+    mes_ = tiempo_descompuesto->tm_mon + 1;
+    anno_ = tiempo_descompuesto->tm_year + 1900;
+    valida(dia_, mes_, anno_);
+    return *this;
+}
