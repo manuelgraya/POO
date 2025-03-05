@@ -17,7 +17,7 @@ class Cadena {
         int length() const { return tam_; } // devuelve el tamaño de la cadena
 
         // Constructores
-        explicit Cadena (int tamano = 0, char caracter = ' ');
+        explicit Cadena (size_t tamano = 0, char caracter = ' ');
 
         // Destructor
         ~Cadena() { delete[] s_; }

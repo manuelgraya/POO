@@ -1,19 +1,37 @@
 #include "fecha.hpp"
+//constantes públicas
+const int Fecha::AnnoMinimo = 1902;
+const int Fecha::AnnoMaximo = 2037;
 
+//Constructor
 Fecha::Fecha(int d, int m, int a):dia_(d),mes_(m),anno_(a) { //lista de inicialización
 
-    if (d != 0 && m != 0 && a != 0) {
-        valida(d, m, a);
-    }
-    else{
-        std::time_t tiempo_calendario = std::time(nullptr); //time_t es un tipo de dato que representa el tiempo en segundos desde el 1 de enero de 1970
-        std::tm* tiempo_descompuesto = std::localtime(&tiempo_calendario); //tm apunta a una estructura que contiene la fecha y hora actual
+    
+    valida(d, m, a);
 
-        if(d == 0) dia_ = tiempo_descompuesto->tm_mday; //tm_mday es el día del mes (1-31)
-        if(m == 0) mes_ = tiempo_descompuesto->tm_mon + 1; //tm_mon es el mes del año (0-11)
-        if(a == 0) anno_ = tiempo_descompuesto->tm_year + 1900; //tm_year es el año desde 1900 se le suma 1900 porque tm_year es el año desde 1900 y no desde 0        
-    }
+    std::time_t tiempo_calendario = std::time(nullptr); //time_t es un tipo de dato que representa el tiempo en segundos desde el 1 de enero de 1970
+    std::tm* tiempo_descompuesto = std::localtime(&tiempo_calendario); //tm apunta a una estructura que contiene la fecha y hora actual
+    if(d == 0) dia_ = tiempo_descompuesto->tm_mday; //tm_mday es el día del mes (1-31)
+    if(m == 0) mes_ = tiempo_descompuesto->tm_mon + 1; //tm_mon es el mes del año (0-11)
+    if(a == 0) anno_ = tiempo_descompuesto->tm_year + 1900; //tm_year es el año desde 1900 se le suma 1900 porque tm_year es el año desde 1900 y no desde 0        
+    
 
+}
+//Constructor de conversión
+Fecha::Fecha(const char* cadena){
+    int d,m,a;
+    sscanf(cadena,"%d/%d/%d", &d, &m, &a);
+    valida(d,m,a);
+    dia_ = d;
+    mes_ = m;
+    anno_ = a;
+
+    std::time_t tiempo_calendario = std::time(nullptr); //time_t es un tipo de dato que representa el tiempo en segundos desde el 1 de enero de 1970
+    std::tm* tiempo_descompuesto = std::localtime(&tiempo_calendario); //tm apunta a una estructura que contiene la fecha y hora actual
+    if(d == 0) dia_ = tiempo_descompuesto->tm_mday; //tm_mday es el día del mes (1-31)
+    if(m == 0) mes_ = tiempo_descompuesto->tm_mon + 1; //tm_mon es el mes del año (0-11)
+    if(a == 0) anno_ = tiempo_descompuesto->tm_year + 1900; //tm_year es el año desde 1900 se le suma 1900 porque tm_year es el año desde 1900 y no desde 0        
+    
 }
 
 bool es_bisiesto(int a){
@@ -42,43 +60,20 @@ int dias_mes(int m, int a){
 }
 
 bool valida(int d, int m, int a){
-    if (d < 1 || d > 31) {
+    if (d < 0 || d > dias_mes(m, a)) {
         throw std::out_of_range("Error: Dia no valido");
     }
-    if (m < 1 || m > 12) {
+    if (m < 0 || m > 12) {
         throw std::out_of_range("Error: Mes no valido");
     }
-    if (a < 0) {
+    if (a!=0 && (a < Fecha::AnnoMinimo || a > Fecha::AnnoMaximo)) {
         throw std::out_of_range("Error: Año no valido");
     }
-    if (d > dias_mes(m, a)) {
-        throw std::out_of_range("Error: Dia no valido para el mes y año");
-    }
+    
 
     return true;
 
 }
 
-int main() {
-    Fecha f1;           // Fecha del sistema
-    std::cout << "Fecha 1: " << f1.dia() << "/" << f1.mes() << "/" << f1.anno() << "\n";
-
-    Fecha f2(15);       // Día 15, mes y año del sistema
-    std::cout << "Fecha 2: " << f2.dia() << "/" << f2.mes() << "/" << f2.anno() << "\n";
-
-    Fecha f3(15, 7);    // 15 de julio, año del sistema
-    std::cout << "Fecha 3: " << f3.dia() << "/" << f3.mes() << "/" << f3.anno() << "\n";
-
-    Fecha f4(15, 7, 1990); // 15 de julio de 1990
-    std::cout << "Fecha 4: " << f4.dia() << "/" << f4.mes() << "/" << f4.anno() << "\n";
-
-    Fecha f5(29, 2, 2025); // Fecha errónea, bisiesto equivoco
-    
-    Fecha f6(55, 7, 1990); // Fecha errónea,
-
-    std::cin.get();
-
-    return 0;
-}
 
 

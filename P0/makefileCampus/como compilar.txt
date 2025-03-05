@@ -1,0 +1,12 @@
+COMPILAR POR SEPARADO PARA CREAR .O DE CADA CPP
+    g++ -c main.cpp
+    g++ -c fecha.cpp
+
+ENLAZAR OBJETOS Y CREAR EXE CON .O NECESARIOS
+    g++ -o pruebafecha main.o fecha.o
+
+AQUI ENTRA EN JUEGO MAKEFILE
+
+instalar make con:
+    choco install make 
+    ->Esto en windows

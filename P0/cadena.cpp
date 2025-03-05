@@ -1,8 +1,12 @@
 #include "cadena.hpp"
 
-Cadena::Cadena(int t, char c) : tam_(t), s_(new char[t + 1]) {
-    std::fill_n(s_, t, c);
-    s_[t] = '\0';
+//definicion del atributo static
+char Cadena::vacia[1] = {'\0'};
+
+Cadena::Cadena(size_t t, char c) : tam_(t), s_(vacia) {
+    s_ = new char[tam_ + 1];
+    std::memset(s_, c, tam_);
+    s_[tam_] = '\0';
 }
 
 std::ostream& operator<<(std::ostream& os, const Cadena& cadena) {
