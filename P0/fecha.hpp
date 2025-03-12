@@ -12,6 +12,8 @@ class Fecha {
         int dia_;
         int mes_;
         int anno_;
+        mutable bool actual;
+        mutable char cadena[40]; // Cadena de representación de la fecha
     public:
     //constructores
     explicit Fecha (int dia = 0, int mes = 0, int anno = 0); //constructor con tres parametros, no permite conversion implicita Fecha f= 5; (Fecha (5,0,0))
@@ -63,6 +65,9 @@ class Fecha {
     inline Fecha operator++(int) { Fecha t = *this; *this += 1; return t; } // postincremento es decir primero se devuelve el valor y luego se incrementa
     inline Fecha& operator--() { return *this += -1; } // predecremento es decir primero se decrementa y luego se devuelve el valor
     inline Fecha operator--(int) { Fecha t = *this; *this += -1; return t; } // postdecremento es decir primero se devuelve el valor y luego se decrementa
+
+    operator const char*() const;
+
 };  
 
 bool valida(int d, int m, int a);

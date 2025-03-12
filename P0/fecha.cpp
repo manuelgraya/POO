@@ -4,8 +4,7 @@ const int Fecha::AnnoMinimo = 1902;
 const int Fecha::AnnoMaximo = 2037;
 
 //Constructor
-Fecha::Fecha(int d, int m, int a):dia_(d),mes_(m),anno_(a) { //lista de inicialización
-
+Fecha::Fecha(int d, int m, int a):dia_(d),mes_(m),anno_(a), actual(false) { //lista de inicialización
     
     valida(d, m, a);
 
@@ -18,7 +17,7 @@ Fecha::Fecha(int d, int m, int a):dia_(d),mes_(m),anno_(a) { //lista de iniciali
 
 }
 //Constructor de conversión
-Fecha::Fecha(const char* cadena){
+Fecha::Fecha(const char* cadena): actual(false){
     int d,m,a;
     sscanf(cadena,"%d/%d/%d", &d, &m, &a);
     valida(d, m, a);
@@ -88,4 +87,18 @@ Fecha& Fecha::operator+=(int n){
     anno_ = tiempo_descompuesto->tm_year + 1900;
     valida(dia_, mes_, anno_);
     return *this;
+}
+
+Fecha::operator const char*() const{
+    if (!actual){
+        // std::locale::global(std::locale("es_ES.UTF-8"));
+        std::tm tiempo_descompuesto = {0};
+        tiempo_descompuesto.tm_mday = dia_;
+        tiempo_descompuesto.tm_mon = mes_ - 1;
+        tiempo_descompuesto.tm_year = anno_ - 1900;
+        std::mktime(&tiempo_descompuesto);
+        std::strftime(cadena, 40, "%A %d de %B de %Y", &tiempo_descompuesto);
+        actual = true;
+    }
+    return cadena;
 }

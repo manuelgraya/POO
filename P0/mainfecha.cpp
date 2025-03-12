@@ -26,25 +26,41 @@ int main() {
     }else{
         std::cout << "s no es menor que 06/12/2002" << std::endl;
     }
-    a += 30;
-    std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
-    a -= 30;
-    std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
-    a = a + 5;
-    std::cout << "a + 5:" << endl;
-    std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
-    a = a - 5;
-    std::cout << "a - 5:" << endl;
-    std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
-    ++a;
-    std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
-    a++;
-    std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
-    --a;
-    std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
-    a--;
-    std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
 
+    try {
+        Fecha armagedon(31, 12, Fecha::AnnoMaximo),
+        big_bang(1, 1, Fecha::AnnoMinimo);
+        armagedon++; // Error, desbordamiento superior en armagedon
+        big_bang-= 3; // Error, desbordamiento inferior en la Fecha devuelta
+    } catch(Fecha::Invalida& e) { std::cerr << e.por_que() << std::endl; }
+
+        // Prueba del operador de conversión a const char*
+    Fecha fechaPrueba(15, 8, 2021);
+    const char* fechaComoCadena = fechaPrueba;
+    std::cout << "Fecha como cadena: " << fechaComoCadena << std::endl;
+
+    // a += 30;
+    // std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
+    // a -= 30;
+    // std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
+    // a = a + 5;
+    // std::cout << "a + 5:" << endl;
+    // std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
+    // a = a - 5;
+    // std::cout << "a - 5:" << endl;
+    // std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
+    // std::cout << "++a:" << endl;
+    // ++a;
+    // std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
+    // std::cout << "a++:" << endl;
+    // a++;
+    // std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
+    // --a;
+    // std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
+    // a--;
+    // std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
+
+    
 
     return 0;
 }
