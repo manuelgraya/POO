@@ -14,8 +14,8 @@ std::ostream& operator<<(std::ostream& os, const Cadena& cadena) {
     return os;
 }
 
-int main() {
-    Cadena a(3, 'A');
-    std::cout << a;
-    std::cin.get();
-}
+// int main() {
+//     Cadena a(3, 'A');
+//     std::cout << a;
+//     std::cin.get();
+// }

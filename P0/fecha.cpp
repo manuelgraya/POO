@@ -85,13 +85,16 @@ Fecha& Fecha::operator+=(int n){
     dia_ = tiempo_descompuesto->tm_mday;
     mes_ = tiempo_descompuesto->tm_mon + 1;
     anno_ = tiempo_descompuesto->tm_year + 1900;
+    actual=false;
     valida(dia_, mes_, anno_);
     return *this;
 }
 
+#include <locale>
+
 Fecha::operator const char*() const{
     if (!actual){
-        // std::locale::global(std::locale("es_ES.UTF-8"));
+        std::locale::global(std::locale("es_ES.UTF-8"));
         std::tm tiempo_descompuesto = {0};
         tiempo_descompuesto.tm_mday = dia_;
         tiempo_descompuesto.tm_mon = mes_ - 1;

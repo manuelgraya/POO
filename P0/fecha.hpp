@@ -59,13 +59,14 @@ class Fecha {
     // f-- => t = f, f += -1, t
     Fecha& operator+=(int n); //se pone & para que se pueda hacer f += 5 debido a que se modifica el objeto f y no se crea uno nuevo
     inline Fecha& operator-=(int n) { return *this += -n; }
-    inline Fecha& operator+(int n) { Fecha t = *this; return t += n; }
-    inline Fecha& operator-(int n) { Fecha t = *this; return t+= -n; }
+    inline Fecha operator+(int n) { Fecha t = *this; return t += n; }
+    inline Fecha operator-(int n) { Fecha t = *this; return t+= -n; }
     inline Fecha& operator++() { return *this += 1; } // preincremento es decir primero se incrementa y luego se devuelve el valor
     inline Fecha operator++(int) { Fecha t = *this; *this += 1; return t; } // postincremento es decir primero se devuelve el valor y luego se incrementa
     inline Fecha& operator--() { return *this += -1; } // predecremento es decir primero se decrementa y luego se devuelve el valor
     inline Fecha operator--(int) { Fecha t = *this; *this += -1; return t; } // postdecremento es decir primero se devuelve el valor y luego se decrementa
 
+    //operador de conversión a const char*
     operator const char*() const;
 
 };  
