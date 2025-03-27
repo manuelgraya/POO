@@ -38,7 +38,7 @@ int main() {
     // Fecha fechaPrueba(15, 8, 2021);
     // const char* fechaComoCadena = fechaPrueba;
     // std::cout << "Fecha como cadena: " << fechaComoCadena << std::endl;
-    Fecha a(0,0,0);
+    Fecha a(1,0,0);
     a += 9;
     std::cout << a.dia() << "/" << a.mes() << "/" << a.anno() << std::endl;
     a -= 9;

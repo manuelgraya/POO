@@ -18,7 +18,7 @@ class Cadena {
 
         // Constructores
         explicit Cadena (size_t tamano = 0, char caracter = ' ');
-
+        Cadena (const char* str);
         // Destructor
         ~Cadena() { delete[] s_; }
 
@@ -27,3 +27,45 @@ class Cadena {
 };
 
 #endif
+
+
+/*------------------------------------ CADENA SERGIO -------------------------------------------------------*/
+
+// #ifndef CADENA_HPP_
+// #define CADENA_HPP_
+// #include<cstring>
+// #include<algorithm>
+// #include<iostream>
+// using namespace std;
+
+// class Cadena{
+//     public:
+//         explicit Cadena(size_t tam = 0, char a = ' ');  //OK
+//         Cadena(const Cadena& C);  //OK
+//         Cadena(const char* cad);  //OK
+//         Cadena& operator =(const Cadena& c);  //OK
+//         size_t length() const;  //OK
+//         explicit operator const char*() const;  //OK
+//         Cadena& operator +=(const Cadena& c);  //OK
+//         char& operator [](size_t index) const;  //OK
+//         char& operator [](size_t index);  //OK
+//         char& at(size_t index); //OK
+//         char& at(size_t index) const;  //OK
+//         Cadena substr(unsigned index, size_t tama) const;
+//         friend bool operator ==(const Cadena& Cad1, const Cadena& Cad2);   //OK
+//         friend bool operator !=(const Cadena& Cad1, const Cadena& Cad2);   //OK
+//         friend bool operator >(const Cadena& Cad1, const Cadena& Cad2);    //OK
+//         friend bool operator <(const Cadena& Cad1, const Cadena& Cad2);    //OK
+//         friend bool operator >=(const Cadena& Cad1, const Cadena& Cad2);   //OK
+//         friend bool operator <=(const Cadena& Cad1, const Cadena& Cad2);   //OK
+//         ~Cadena();  //OK
+//     private:
+//         static char vacia[1];
+//         size_t tam_;
+//         char* s_;
+// };
+
+// Cadena operator +(const Cadena& c1, const Cadena& c2);  //OK
+
+
+// #endif
