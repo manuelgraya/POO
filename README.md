@@ -1,5 +1,8 @@
 # Programación orientada a objetos
 
+## Comando para acceder al docker 
+
+docker run -it --rm -v C:/Users/manuel/POO:/home/poo diiuca/poo
 
 ## P0
 
