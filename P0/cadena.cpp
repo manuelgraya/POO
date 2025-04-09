@@ -3,17 +3,74 @@
 //definicion del atributo static
 char Cadena::vacia[1] = {'\0'};
 
+//constructor por defecto
 Cadena::Cadena(size_t t, char c) : tam_(t), s_(vacia) {
-    s_ = new char[tam_ + 1];
-    std::memset(s_, c, tam_);
-    s_[tam_] = '\0';
+    if (t == 0) {
+        s_ = vacia;
+    } else {
+        s_ = new char[t + 1];
+        for (size_t i = 0; i < t; ++i) {
+            s_[i] = c;
+        }
+        s_[t] = '\0'; // Aseguramos que la cadena esté terminada en nulo
+    }
 }
 
+//construcor const char*
 Cadena::Cadena(const char* str){
     tam_ = std::strlen(str);
     s_ = new char[tam_ + 1];
     std::strcpy(s_, str);
+    s_[tam_] = '\0'; // Aseguramos que la cadena esté terminada en nulo
 }
+
+//constructor de copia
+Cadena::Cadena(const Cadena& c) : tam_(c.tam_) {
+    if (tam_ == 0) {
+        s_ = vacia;
+    } else {
+        s_ = new char[tam_ + 1];
+        std::strcpy(s_, c.s_);
+        s_[tam_] = '\0'; // Aseguramos que la cadena esté terminada en nulo
+    }
+}
+
+//operador ==
+bool operator ==(const Cadena& cad1, const Cadena& cad2){
+    if (cad1.tam_ != cad2.tam_) {
+        return false;
+    }else{
+        for (size_t i = 0; i < cad1.tam_; ++i) {
+            if (cad1.s_[i] != cad2.s_[i]) {
+                return false;
+            }
+        }
+        return true;
+    } 
+}
+
+//operador menor que
+bool operator <(const Cadena& Cad1, const Cadena& Cad2) {
+    if(Cad1.tam_ == 0 && Cad2.tam_ == 0) {
+        return false;
+    }
+    if (Cad1.tam_ < Cad2.tam_) {
+        return true;
+    } else if (Cad1.tam_ > Cad2.tam_) {
+        return false;
+    } else {
+        // Si las longitudes son iguales, comparamos carácter por carácter
+        for (size_t i = 0; i < Cad1.tam_; ++i) {
+            if (Cad1.s_[i] < Cad2.s_[i]) {
+                return true;
+            } else if (Cad1.s_[i] > Cad2.s_[i]) {
+                return false;
+            }
+        }
+        // Si todos los caracteres son iguales, las cadenas son iguales
+        return false;
+    }
+    }
 
 std::ostream& operator<<(std::ostream& os, const Cadena& cadena) {
     os << cadena.s_;

@@ -242,10 +242,10 @@ pruebafecha: fecha.o mainfecha.o
 	c++ -o pruebafecha fecha.o mainfecha.o
 
 cadena.o: cadena.cpp cadena.hpp
-	c++ -c cadena.cpp
+	c++ -g -c cadena.cpp
 
 maincadena.o: maincadena.cpp cadena.hpp
-	c++ -c maincadena.cpp
+	c++ -g -c maincadena.cpp
 
 pruebacadena: cadena.o maincadena.o
 	c++ -o pruebacadena cadena.o maincadena.o

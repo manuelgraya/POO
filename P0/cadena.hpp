@@ -16,16 +16,30 @@ class Cadena {
         // funciones observadoras
         int length() const { return tam_; } // devuelve el tamaño de la cadena
 
-        // Constructores
+        // Constructor por defecto
         explicit Cadena (size_t tamano = 0, char caracter = ' ');
+        //constructor const char*
         Cadena (const char* str);
+        // Constructor de copia
+        Cadena (const Cadena& C);
         // Destructor
         ~Cadena() { delete[] s_; }
 
         // Sobrecarga del operador de inserción
         friend std::ostream& operator<<(std::ostream& os, const Cadena& cadena);
-};
+        //operadores "padre" '<' && '=='
+        friend bool operator ==(const Cadena& Cad1, const Cadena& Cad2);
+        friend bool operator <(const Cadena& Cad1, const Cadena& Cad2);
+        //operadores inline de comparación
+        friend inline bool operator !=(const Cadena& Cad1, const Cadena& Cad2){return !(Cad1 == Cad2);}
+        friend inline bool operator >(const Cadena& Cad1, const Cadena& Cad2){ return (Cad2 < Cad1);}
+        friend inline bool operator >=(const Cadena& Cad1, const Cadena& Cad2){return !(Cad1 < Cad2);}
+        friend inline bool operator <=(const Cadena& Cad1, const Cadena& Cad2){return !(Cad2 < Cad1);}
 
+        
+
+
+};
 #endif
 
 
