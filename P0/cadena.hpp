@@ -15,7 +15,8 @@ class Cadena {
     public:
         // funciones observadoras
         int length() const { return tam_; } // devuelve el tamaño de la cadena
-
+        char& at(size_t index) const; // devuelve el caracter en la posición index (controla excepciones) para constantes
+        char& at(size_t index); // devuelve el caracter en la posición index (controla excepciones) para no constantes
         // Constructor por defecto
         explicit Cadena (size_t tamano = 0, char caracter = ' ');
         //constructor const char*
@@ -24,6 +25,8 @@ class Cadena {
         Cadena (const Cadena& C);
         // Destructor
         ~Cadena() { delete[] s_; }
+        //metodo substr para devolver una subCadena especificado
+        Cadena substr(size_t index, size_t tama) const;
 
         // Sobrecarga del operador de inserción
         friend std::ostream& operator<<(std::ostream& os, const Cadena& cadena);
@@ -35,9 +38,17 @@ class Cadena {
         friend inline bool operator >(const Cadena& Cad1, const Cadena& Cad2){ return (Cad2 < Cad1);}
         friend inline bool operator >=(const Cadena& Cad1, const Cadena& Cad2){return !(Cad1 < Cad2);}
         friend inline bool operator <=(const Cadena& Cad1, const Cadena& Cad2){return !(Cad2 < Cad1);}
-
-        
-
+        // Sobrecarga operador corchetes
+        inline const char& operator[](size_t index) const { return s_[index]; } // para objetos const
+        inline char& operator[](size_t index) { return s_[index]; }            // para objetos no const
+        //operador de asignación
+        Cadena& operator =(const Cadena& c); // asignación de cadena
+        Cadena& operator =(const char* str); // asignación de const char*
+        //operador const char* para convertir a cadena
+        inline explicit operator const char*() const { return s_; } // conversión a const char*
+        //operador de concatenación
+        Cadena& operator+=(const Cadena& otra);
+        friend Cadena operator+(const Cadena& c1, const Cadena& c2);
 
 };
 #endif
@@ -81,5 +92,4 @@ class Cadena {
 
 // Cadena operator +(const Cadena& c1, const Cadena& c2);  //OK
 
-
-// #endif
+// #endi
