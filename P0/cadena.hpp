@@ -14,7 +14,7 @@ class Cadena {
 
     public:
         // funciones observadoras
-        int length() const { return tam_; } // devuelve el tamaño de la cadena
+        size_t length() const { return tam_; } // devuelve el tamaño de la cadena
         char& at(size_t index) const; // devuelve el caracter en la posición index (controla excepciones) para constantes
         char& at(size_t index); // devuelve el caracter en la posición index (controla excepciones) para no constantes
         // Constructor por defecto
@@ -24,7 +24,10 @@ class Cadena {
         // Constructor de copia
         Cadena (const Cadena& C);
         // Destructor
-        ~Cadena() { delete[] s_; }
+        ~Cadena() { 
+            if (s_ != vacia)
+                delete[] s_; 
+        }
         //metodo substr para devolver una subCadena especificado
         Cadena substr(size_t index, size_t tama) const;
 
