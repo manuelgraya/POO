@@ -1,4 +1,4 @@
-#!/usr/bin/colormake
+c#!/usr/bin/colormake
 
 # Makefile para las prácticas P0 y P1
 #

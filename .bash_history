@@ -56,3 +56,51 @@ make test-auto
 make clean
 quit
 exit
+cd P2
+make pruebaarticulo
+[200~sudo apt update
+sudo apt install build-essential
+~sudo apt update
+sudo apt install build-essential
+g++ --version
+exit
+cd P2
+make pruebaarticulo
+./pruebaarticulo.exe
+pruebaarticulo.exe
+cmod +x pruebaarticulo
+chmod +x pruebaarticulo
+pruebaarticulo.exe
+pruebaarticulo
+exec pruebaarticulo
+exe pruebaarticulo
+[200~bash: cmod: command not found
+poo@840730decf98:~/P2$ chmod +x pruebaarticulo
+poo@840730decf98:~/P2$ pruebaarticulo.exe
+bash: pruebaarticulo.exe: command not found
+poo@840730decf98:~/P2$ pruebaarticulo
+bash: pruebaarticulo: command not found
+poo@840730decf98:~/P2$ exec pruebaarticulo
+bash: exec: pruebaarticulo: not found
+poo@840730decf98:~/P2$ exe pruebaarticulo
+bash: exe: command not found
+poo@840730decf98:~/P2$ 
+~bash: cmod: command not found
+poo@840730decf98:~/P2$ chmod +x pruebaarticulo
+poo@840730decf98:~/P2$ pruebaarticulo.exe
+bash: pruebaarticulo.exe: command not found
+poo@840730decf98:~/P2$ pruebaarticulo
+bash: pruebaarticulo: command not found
+poo@840730decf98:~/P2$ exec pruebaarticulo
+bash: exec: pruebaarticulo: not found
+poo@840730decf98:~/P2$ exe pruebaarticulo
+bash: exe: command not found
+poo@840730decf98:~/P2$ 
+./pruebaarticulo
+exit
+ls
+cd P2
+g++ usuario.cpp mainclave.cpp ../P1/cadena.cpp -o prueba_clave
+g++ --version
+make prueba_clave
+exit
