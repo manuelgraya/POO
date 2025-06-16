@@ -85,7 +85,7 @@ Cadena Cadena::substr(size_t index, size_t tama) const {
     for (size_t i = 0; i < tama; ++i) {
         subCadena[i] = s_[i + index];
     }
-    subCadena[tama] = '\0'; // Aseguramos que la cadena esté terminada en nulo
+    // No necesitas añadir el terminador nulo aquí, ya se hace en el constructor
     return subCadena;
 }
 
